@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Linguini</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcomeBack">Welcome Back</string>
+    <string name="login">Login</string>
+    <string name="yourEmail">Your Email</string>
+    <string name="yourPassword">Your Password</string>
+    <string name="dosntHaveAcc">Doesn`t have an account? Sign UP</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnSkip">Skip</string>
+    <string name="sginUp">Sign Up</string>
+    <string name="yourName">Your Name</string>
+    <string name="reEnterYourPassword">Re-enter Your Password</string>
+    <string name="Alreadyhaveanacc">Already have an account? Log In</string>
+    <string name="btncontinue">Continue</string>
 </resources>

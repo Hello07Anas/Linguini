@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922744671758",
+    "project_id": "linguini-2e41a",
+    "storage_bucket": "linguini-2e41a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922744671758:android:ce45882b43d8287788b65f",
+        "android_client_info": {
+          "package_name": "com.example.linguini"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6jBobBT0ApUdW321y9GisT4uo-i0uogI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
