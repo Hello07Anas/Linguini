@@ -1,12 +1,11 @@
 package com.example.linguini.Registration;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.linguini.HomeScreen.view.HomeActivity;
 import com.example.linguini.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginFragment extends Fragment {
@@ -56,38 +51,42 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                String email = editTextEmailAddress.getText().toString();
-                String password = editTextPassword.getText().toString();
-
-                if(TextUtils.isEmpty(email)){
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(),"enter email", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(),"enter password", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                progressBar.setVisibility(View.VISIBLE);
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(getContext(), "welcome to Linguini", Toast.LENGTH_LONG).show();
-
-                                } else {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(getContext(), "the password or email incorrect :(", Toast.LENGTH_LONG).show();
-
-                                }
-                            }
-                        });
-                progressBar.setVisibility(View.GONE);
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(intent);
+                // TODO un comment the code its very important I just comment to can move faster to Home
+//                progressBar.setVisibility(View.VISIBLE);
+//                String email = editTextEmailAddress.getText().toString();
+//                String password = editTextPassword.getText().toString();
+//
+//                if(TextUtils.isEmpty(email)){
+//                    progressBar.setVisibility(View.GONE);
+//                    Toast.makeText(getContext(),"enter email", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//
+//                if(TextUtils.isEmpty(password)){
+//                    progressBar.setVisibility(View.GONE);
+//                    Toast.makeText(getContext(),"enter password", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                progressBar.setVisibility(View.VISIBLE);
+//                mAuth.signInWithEmailAndPassword(email, password)
+//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    progressBar.setVisibility(View.GONE);
+//                                    Toast.makeText(getContext(), "welcome to Linguini", Toast.LENGTH_LONG).show();
+//                                    Intent intent = new Intent(getContext(), HomeActivity.class);
+//                                    startActivity(intent);
+//                                } else {
+//                                    progressBar.setVisibility(View.GONE);
+//                                    Toast.makeText(getContext(), "the password or email incorrect :(", Toast.LENGTH_LONG).show();
+//
+//                                }
+//                            }
+//                        });
+//                progressBar.setVisibility(View.GONE);
             }
         });
 
