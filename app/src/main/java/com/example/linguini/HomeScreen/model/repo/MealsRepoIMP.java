@@ -1,0 +1,37 @@
+package com.example.linguini.HomeScreen.model.repo;
+
+import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSource;
+import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSourceIMP;
+import com.example.linguini.HomeScreen.model.network.NetworkCallBack;
+
+public class MealsRepoIMP implements MealsRepository{
+
+    private static MealsRepoIMP instance = null;
+    private MealsRemoteDataSource remoteDataSource;
+
+
+    private MealsRepoIMP(MealsRemoteDataSource remoteDataSource) {
+        this.remoteDataSource = remoteDataSource;
+    }
+
+    public static MealsRepoIMP getInstance(MealsRemoteDataSourceIMP mealsRemoteDataSourceIMP) {
+        if(instance == null) {
+            instance = new MealsRepoIMP(mealsRemoteDataSourceIMP);
+        }
+        return instance;
+    }
+
+    @Override
+    public void getIngediants(NetworkCallBack.IngredientsCallBack ingredientsCallBack) {
+        remoteDataSource.getIngredients(ingredientsCallBack);
+    }
+
+    @Override
+    public void getArea(NetworkCallBack.AreaCallBack areaCallBack) {
+        remoteDataSource.getArea(areaCallBack);
+    }
+
+    public void getMeal(NetworkCallBack.MealCallBack mealCallBack) {
+        remoteDataSource.getMeal(mealCallBack);
+    }
+}

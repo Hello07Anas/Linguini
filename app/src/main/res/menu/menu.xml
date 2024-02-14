@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+
+        android:title="@string/home"
+        android:icon="@drawable/add_home"
+        android:id="@+id/homeFragment"
+        />
+    <item
+
+        android:title="@string/search"
+        android:icon="@drawable/search"
+        android:id="@+id/searchFragment"
+        />
+    <item
+
+        android:title="@string/my_plan"
+        android:icon="@drawable/calendar_month"
+        android:id="@+id/myPlanFragment"
+        />
+    <item
+
+        android:title="@string/favorites"
+        android:icon="@drawable/favorite"
+        android:id="@+id/favoritesFragment2"
+        />
+    <item
+
+        android:title="@string/profile"
+        android:icon="@drawable/account_circle"
+        android:id="@+id/profileFragment"
+        />
+</menu>
