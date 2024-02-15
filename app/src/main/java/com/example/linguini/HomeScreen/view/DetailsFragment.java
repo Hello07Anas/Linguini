@@ -95,8 +95,8 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
         // Extract video ID from the YouTube URL
         String videoUrl = pojoForMeal.getStrYoutube();
-        String videoId = extractVideoIdFromUrl(videoUrl);
-
+        String videoId = getId(videoUrl);
+        Log.i(TAG, "showDetailse: " + videoId);
         // Initialize YouTubePlayerView and load the video
         YouTubePlayerView youTubePlayerView = getView().findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
@@ -126,20 +126,26 @@ public class DetailsFragment extends Fragment implements DetailsView {
     }
 
     // Utility method to extract video ID from YouTube URL
-    private String extractVideoIdFromUrl(String youtubeUrl) {
-        String videoId = null;
-        if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("https://www.youtube.com/")) {
-            String[] urlParts = youtubeUrl.split("v=");
-            if (urlParts.length > 1) {
-                videoId = urlParts[1];
-                int ampersandPosition = videoId.indexOf('&');
-                if (ampersandPosition != -1) {
-                    videoId = videoId.substring(0, ampersandPosition);
-                }
-            }
-        }
-        return videoId;
+
+    public String getId(String link) {
+        if (link != null && link.split("\\?v=").length > 1)
+            return link.split("\\?v=")[1];
+        else return "";
     }
+//    private String extractVideoIdFromUrl(String youtubeUrl) {
+//        String videoId = null;
+//        if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("https://www.youtube.com/")) {
+//            String[] urlParts = youtubeUrl.split("v=");
+//            if (urlParts.length > 1) {
+//                videoId = urlParts[1];
+//                int ampersandPosition = videoId.indexOf('&');
+//                if (ampersandPosition != -1) {
+//                    videoId = videoId.substring(0, ampersandPosition);
+//                }
+//            }
+//        }
+//        return videoId;
+//    }
 }
 
 
