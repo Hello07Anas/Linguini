@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,16 +25,17 @@ import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSourceIMP;
 import com.example.linguini.HomeScreen.presenter.HomePresenter;
 import com.example.linguini.HomeScreen.presenter.HomePresenterIMP;
 import com.example.linguini.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class HomeFragment extends Fragment implements HomeView {
-
-
-
     private static final String TAG = "HomeFragment";
+    FirebaseAuth auth;
+    FirebaseUser user;
     HomePresenter homePresenter;
     MealAreaAdapter mealAreaAdapter;
     private RecyclerView recyclerView;
@@ -41,7 +43,7 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -50,10 +52,23 @@ public class HomeFragment extends Fragment implements HomeView {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_card);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mealAdapter = new MealOfDayAdapter(new ArrayList<>());
+        mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
         recyclerView.setAdapter(mealAdapter);
+
+        user = auth.getCurrentUser();
+        String email = user.getEmail();
+        Log.i(TAG, "onCreateView: "+ email);
+
         return view;
     }//MealOfDayAdapter
+
+
+
+
+    public void onItemCliked(PojoForMeal meal) {
+
+    }
+
 
     @Override
     public void showIngrediants(IngredientsResponse ingredientsResponse) {
@@ -86,11 +101,18 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void showMeal(MealResponse mealResponse) {
         //TODO  <<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        Log.i(TAG, "show Meal: " + mealResponse.getMealDay());
+        Log.i(TAG, "show Meal: " + mealResponse.getMealDay().get(0).getMealName());
+
+
+
         List<PojoForMeal> meals = mealResponse.getMealDay();
         mealAdapter.updateData(meals);
 
     }
+
+
+
+
 
 
     @Override
@@ -110,4 +132,10 @@ public class HomeFragment extends Fragment implements HomeView {
         //homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
     }
 
+
+
+
+    public void onClicked(PojoForMeal pojoForMeal, View view) {
+        Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(pojoForMeal.getIdMeal()));
+    }
 }

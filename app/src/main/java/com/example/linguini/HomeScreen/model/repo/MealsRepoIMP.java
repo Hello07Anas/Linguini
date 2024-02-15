@@ -10,6 +10,9 @@ public class MealsRepoIMP implements MealsRepository{
     private MealsRemoteDataSource remoteDataSource;
 
 
+    // all needed operation will be here ' I think so '
+
+
     private MealsRepoIMP(MealsRemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
     }
@@ -33,5 +36,10 @@ public class MealsRepoIMP implements MealsRepository{
 
     public void getMeal(NetworkCallBack.MealCallBack mealCallBack) {
         remoteDataSource.getMeal(mealCallBack);
+    }
+
+    @Override
+    public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id) {
+        remoteDataSource.getMealDetails(mealCallBackDetails, id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.linguini.HomeScreen.model.network;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.linguini.HomeScreen.model.Pojos.Response.IngredientsResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
@@ -14,11 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
-    private static Retrofit retrofit;
     private MealService service;
     private static MealsRemoteDataSourceIMP instance;
-
-
 
     private MealsRemoteDataSourceIMP(Context context) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -28,7 +26,6 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
         service = retrofit.create(MealService.class);
     }
 
-
     // singeltone desgin pattern <<
     public static synchronized MealsRemoteDataSourceIMP getInstance(Context context) {
         if (instance == null) {
@@ -36,6 +33,10 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
         }
         return instance;
     }
+
+
+
+
 
     @Override
     public void getIngredients(NetworkCallBack.IngredientsCallBack ingredientsCallBack) {
@@ -84,6 +85,23 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
             @Override
             public void onFailure(Call<MealResponse> call, Throwable t) {
                 mealCallBack.onFailMeal(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id) {
+        Call<MealResponse> call = service.getMealDetails(id);
+        call.enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                Log.i("TAG", "onResponse: "+ response.body().getMealDay().get(0).getMealName());
+                mealCallBackDetails.onSuccessMeal(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable t) {
+                mealCallBackDetails.onFailMeal(t.getMessage());
             }
         });
     }

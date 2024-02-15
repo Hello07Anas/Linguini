@@ -17,4 +17,5 @@ public class MealResponse {
     public void setMealDay(List<PojoForMeal> mealDay) {
         this.mealDay = mealDay;
     }
+
 }
