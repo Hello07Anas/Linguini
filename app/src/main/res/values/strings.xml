@@ -29,6 +29,12 @@
     <string name="categoryOfIngredients">Category Of Ingredients</string>
     <string name="categoryMeal">Meal Categories</string>
     <string name="categoryOfCountry">category Of Country</string>
+    <string name="beautiful">"beuteful: "</string>
+    <string name="Beautiful">"Beautiful: "</string>
+    <string name="Custard">Custard</string>
+    <string name="Digestive">Digestive Biscuits</string>
+    <string name="Egg">Egg</string>
+    <string name="Almonds">Almonds</string>
 
 
 </resources>

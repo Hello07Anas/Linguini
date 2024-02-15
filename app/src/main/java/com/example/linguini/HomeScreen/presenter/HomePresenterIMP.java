@@ -7,7 +7,7 @@ import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
 import com.example.linguini.HomeScreen.model.network.NetworkCallBack;
 import com.example.linguini.HomeScreen.view.HomeView;
 
-public class HomePresenterIMP implements HomePresenter, NetworkCallBack.IngredientsCallBack, NetworkCallBack.AreaCallBack, NetworkCallBack.MealCallBack {
+public class HomePresenterIMP implements HomePresenter, NetworkCallBack.IngredientsCallBack, NetworkCallBack.AreaCallBack, NetworkCallBack.MealCallBack, NetworkCallBack.MealCallBackDetails {
 
     private HomeView homeView; // refrance from view to connect view with model
     private MealsRepository mealsRepository;  // refrance from model to connect view with view
@@ -66,4 +66,5 @@ public class HomePresenterIMP implements HomePresenter, NetworkCallBack.Ingredie
     public void onFailMeal(String error) {
         homeView.showMealErrorMSG(error);
     }
+
 }

@@ -22,4 +22,8 @@ public interface NetworkCallBack {
         public void onFailMeal(String error);
     }
 
+    interface MealCallBackDetails {
+        public void onSuccessMeal(MealResponse mealResponse);
+        public void onFailMeal(String error);
+    }
 }

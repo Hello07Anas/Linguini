@@ -7,6 +7,7 @@ import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface MealService {
 
@@ -21,4 +22,8 @@ public interface MealService {
 
     @GET("random.php")
     Call<MealResponse> getMealOfDay();
+
+    @GET("lookup.php?i=")
+    Call<MealResponse> getMealDetails(@Query("i") String mealId);
+
 }

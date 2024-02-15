@@ -17,9 +17,11 @@ public class MealOfDayAdapter extends RecyclerView.Adapter<MealOfDayAdapter.Meal
 
     private List<PojoForMeal> meals;
     private Context context;
+    private HomeView view;
 
-    public MealOfDayAdapter(List<PojoForMeal> meals) {
+    public MealOfDayAdapter(List<PojoForMeal> meals, HomeView view) {
         this.meals = meals;
+        this.view = view;
     }
 
     public void updateData(List<PojoForMeal> meals) {
@@ -40,6 +42,12 @@ public class MealOfDayAdapter extends RecyclerView.Adapter<MealOfDayAdapter.Meal
         PojoForMeal meal = meals.get(position);
         holder.mealTextView.setText(meal.getMealName());
         holder.counterNameTextView.setText(meal.getAreaOfMeal());
+        holder.layOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.onClicked(meals.get(holder.getAdapterPosition()) ,v);
+            }
+        });
 
         // Load image using Glide
         Glide.with(context)
@@ -55,16 +63,23 @@ public class MealOfDayAdapter extends RecyclerView.Adapter<MealOfDayAdapter.Meal
         return meals.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(PojoForMeal meal);
+    }
+
     static class MealViewHolder extends RecyclerView.ViewHolder {
         TextView mealTextView;
         TextView counterNameTextView;
         ImageView mealImageView;
+
+        View layOut;
 
         MealViewHolder(@NonNull View itemView) {
             super(itemView);
             mealTextView = itemView.findViewById(R.id.meal_name);
             counterNameTextView = itemView.findViewById(R.id.meal_country);
             mealImageView = itemView.findViewById(R.id.meal_image);
+            layOut = itemView;
         }
     }
 }

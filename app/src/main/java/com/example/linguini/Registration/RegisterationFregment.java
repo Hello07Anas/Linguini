@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.linguini.HomeScreen.view.HomeActivity;
 import com.example.linguini.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -100,7 +101,9 @@ public class RegisterationFregment extends Fragment {
             public void onClick(View v) {
                 // Skip button clicked
                 // TODO: Navigate to the Home
-                signInWithGoogle();
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(intent);
+
                 Toast.makeText(getContext(), "Skipped", Toast.LENGTH_LONG).show();
             }
         });
