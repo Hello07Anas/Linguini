@@ -4,98 +4,250 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backGround"
     tools:context=".HomeScreen.view.DetailsFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/meal_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test" />
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_gravity="bottom"
-            android:background="#81000000"
-            android:padding="8dp">
+            android:layout_height="wrap_content">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:enableAutomaticInitialization="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/meal_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_gravity="bottom"
+                    android:background="#81000000"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/meal_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Spicy Chicken Tikka Masala"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/meal_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="India"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/meal_name"
+                        app:layout_constraintTop_toBottomOf="@+id/meal_name" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageButton
+                    android:id="@+id/btnFav"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#80000000"
+                    android:src="@drawable/favorite" />
+
+                <ImageButton
+                    android:id="@+id/btnSchedule"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="end"
+                    android:backgroundTint="#80000000"
+                    android:src="@drawable/calendar_month" />
+
+
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/meal_name"
+                android:id="@+id/textView41"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/Ingredient"
+                android:textColor="@color/primaryColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/youtube_player_view"
+                app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
+
+            <TextView
+                android:id="@+id/strIngredient1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/Digestive"
+                app:layout_constraintStart_toStartOf="@+id/textView41"
+                app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+            <TextView
+                android:id="@+id/strIngredient2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Butter"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient1"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient1" />
+
+            <TextView
+                android:id="@+id/strIngredient3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Salt"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient2"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient2" />
+
+            <TextView
+                android:id="@+id/strIngredient4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/SugarB"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient3"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient3" />
+
+            <TextView
+                android:id="@+id/strIngredient5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/granulated"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient4"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient4" />
+
+            <TextView
+                android:id="@+id/strIngredient6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Allpurposeflour"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient5"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient5" />
+
+            <TextView
+                android:id="@+id/strIngredient7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/sugar"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient6"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient6" />
+
+            <TextView
+                android:id="@+id/strIngredient8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/PepperW"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient7"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient7" />
+
+            <TextView
+                android:id="@+id/strIngredient9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Oliveoil"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient8"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient8" />
+
+            <TextView
+                android:id="@+id/strIngredient10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Butter"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient9"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient9" />
+
+            <TextView
+                android:id="@+id/strIngredient11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/PepperB"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient10"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient10" />
+
+            <TextView
+                android:id="@+id/strIngredient12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Salt"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient11"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient11" />
+
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/Instructions"
+                android:textColor="@color/primaryColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/strIngredient12"
+                app:layout_constraintTop_toBottomOf="@+id/strIngredient12" />
+
+            <TextView
+                android:id="@+id/txtInstructions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Spicy Chicken Tikka Masala"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginEnd="8dp"
+                android:text="@string/strInstructions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView54"
+                app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
-            <TextView
-                android:id="@+id/meal_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="India"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/meal_name"
-                app:layout_constraintTop_toBottomOf="@+id/meal_name" />
+            <ImageView
+                android:id="@+id/imgGif"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="50dp"
+                android:src="@drawable/mlaha"
+                app:layout_constraintStart_toEndOf="@+id/strIngredient5"
+                app:layout_constraintTop_toTopOf="@+id/strIngredient2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageButton
-            android:id="@+id/btnFav"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="#80000000"
-            android:src="@drawable/favorite" />
-
-        <ImageButton
-            android:id="@+id/btnSchedule"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="end"
-            android:backgroundTint="#80000000"
-            android:src="@drawable/calendar_month"/>
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- YouTube Player View -->
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/youtube_player_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="7dp"
-        app:enableAutomaticInitialization="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="7dp"
-        android:text="@string/Beautiful"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
-
-
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
