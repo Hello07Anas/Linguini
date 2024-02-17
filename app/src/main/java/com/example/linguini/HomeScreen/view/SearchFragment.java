@@ -20,30 +20,11 @@ import java.util.Objects;
 
 public class SearchFragment extends Fragment {
 
-    private SearchBar searchBar;
-    private ImageView imgCommingSoon;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        searchBar = rootView.findViewById(R.id.search_bar);
-
-        // Enable input and focus for the search bar
-        searchBar.setFocusable(true);
-        searchBar.setFocusableInTouchMode(true);
-
-        searchBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchBar.requestFocus();
-                showSoftKeyboard();
-            }
-        });
-
-        // Request focus for the search bar
-        searchBar.requestFocus();
 
         return rootView;
     }
@@ -52,18 +33,5 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        imgCommingSoon = requireView().findViewById(R.id.imgCommingSoon);
-        Glide.with(requireContext())
-                .asGif() // Specify that the resource is a GIF
-                .load(R.drawable.comming_soon) // Load the GIF from resources
-                .placeholder(R.drawable.palastine) // Placeholder image while loading
-                .error(R.drawable.palastine) // Error image if loading fails
-                .into(imgCommingSoon); // Set the GIF to the ImageView
-    }
-
-
-    private void showSoftKeyboard() {
-        InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(searchBar, InputMethodManager.SHOW_FORCED);
     }
 }

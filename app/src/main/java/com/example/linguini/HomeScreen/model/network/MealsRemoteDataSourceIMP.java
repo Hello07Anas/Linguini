@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.linguini.HomeScreen.model.Pojos.Response.IngredientsResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
+import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 
 import retrofit2.Call;
@@ -102,6 +103,22 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
             @Override
             public void onFailure(Call<MealResponse> call, Throwable t) {
                 mealCallBackDetails.onFailMeal(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getMealCategories(NetworkCallBack.CategoriesCallBack categoriesCallBack) {
+        Call<MealCategoryResponse> call = service.getMealCategories();
+        call.enqueue(new Callback<MealCategoryResponse>() {
+            @Override
+            public void onResponse(Call<MealCategoryResponse> call, Response<MealCategoryResponse> response) {
+                categoriesCallBack.onSuccessCategories(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MealCategoryResponse> call, Throwable t) {
+                categoriesCallBack.onFailCategories(t.getMessage());
             }
         });
     }

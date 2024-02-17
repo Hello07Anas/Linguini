@@ -8,4 +8,6 @@ public interface MealsRemoteDataSource {
     public void getMeal(NetworkCallBack.MealCallBack mealCallBack);
 
     public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id);
+
+    public void getMealCategories(NetworkCallBack.CategoriesCallBack categoriesCallBack);
 }

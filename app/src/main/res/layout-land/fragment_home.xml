@@ -46,7 +46,7 @@
                 tools:listitem="@layout/card_daily_meal" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recycler_view_card_ingredients"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="7dp"
@@ -97,7 +97,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_card_ingredients" />
 
             <TextView
                 android:id="@+id/textView17"

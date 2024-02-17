@@ -14,11 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
+import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMeal;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMealArea;
+import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMealCategory;
 import com.example.linguini.HomeScreen.model.repo.MealsRepoIMP;
 import com.example.linguini.HomeScreen.model.Pojos.Response.IngredientsResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
@@ -40,13 +41,14 @@ public class HomeFragment extends Fragment implements HomeView {
     HomePresenter homePresenter;
     private RecyclerView recyclerView;
     private MealOfDayAdapter mealAdapter;
+    private MealCategoryAdapter mealCategoryAdapter;
+
+    private MealAreaAdapter mealAreaAdapter;
     ImageButton btnDeletes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
-
-
     }
 
     @Override
@@ -54,10 +56,7 @@ public class HomeFragment extends Fragment implements HomeView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler_view_card);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
-        recyclerView.setAdapter(mealAdapter);
+
 
         user = auth.getCurrentUser();
         String email = user.getEmail();
@@ -89,8 +88,8 @@ public class HomeFragment extends Fragment implements HomeView {
         List<PojoForMealArea> mealAreas = mealAreaResponse.getMealAreas();
 
         // Update adapter's dataset and trigger UI refresh
-//        mealAreaAdapter.updateData(mealAreas);
-//        mealAreaAdapter.notifyDataSetChanged();
+        mealAreaAdapter.updateData(mealAreas);
+        mealAreaAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -117,17 +116,57 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     @Override
+    public void showCategories(MealCategoryResponse mealCategoryResponse) {
+        List<PojoForMealCategory> mealCategories = mealCategoryResponse.getMealCategories();
+        if (mealCategories != null) { // Add null check
+            mealCategoryAdapter.updateData(mealCategories);
+        } else {
+            Log.e(TAG, "Meal categories list is null");
+        }
+    }
+
+
+
+
+    @Override
+    public void showCategoriesErrorMSG(String error) {
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
 
         //        btnDeletes = view.findViewById(R.id.btnDeletes);
-        //        btnDeletes.setVisibility(View.GONE);
+        //        btnDeletes.setVisibility(View.GONE);   //TODO important to make it work for UI
+        recyclerView = view.findViewById(R.id.recyclerView1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mealAreaAdapter = new MealAreaAdapter(new ArrayList<>());
+        recyclerView.setAdapter(mealAreaAdapter);
 
+
+        RecyclerView recyclerView1 = view.findViewById(R.id.recycler_view_card);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+        mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
+        recyclerView1.setAdapter(mealAdapter);
+
+
+        RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerView2);
+        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
+        mealCategoryAdapter = new MealCategoryAdapter(new ArrayList<>());
+        recyclerViewCategory.setAdapter(mealCategoryAdapter);
+
+        //Log.i(TAG, "Fetching ingredients data...");
         homePresenter.getIngrediants();
+
+        //Log.i(TAG, "Fetching meal areas data...");
         homePresenter.getArea();
+
+        //Log.i(TAG, "Fetching meal data...");
         homePresenter.getMeal();
-        //homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
+        //Log.i(TAG, "Fetching Category data...");
+        homePresenter.getCategory();
     }
 
     public void onClicked(PojoForMeal pojoForMeal, View view) {

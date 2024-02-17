@@ -71,8 +71,11 @@ public class MealOfDayAdapter extends RecyclerView.Adapter<MealOfDayAdapter.Meal
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onDeleteClickListener != null) {
-                    onDeleteClickListener.onDeleteClick(position);
+                int clickedPosition = holder.getAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION) {
+                    if (onDeleteClickListener != null) {
+                        onDeleteClickListener.onDeleteClick(clickedPosition);
+                    }
                 }
             }
         });
@@ -105,7 +108,6 @@ public class MealOfDayAdapter extends RecyclerView.Adapter<MealOfDayAdapter.Meal
         }
     }
 }
-
 
 //package com.example.linguini.HomeScreen.view;
 //
