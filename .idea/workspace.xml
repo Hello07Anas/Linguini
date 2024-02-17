@@ -156,24 +156,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50eb6732-c284-4d97-a9f9-4aa4e91a3e2b" name="Changes" comment="adding vido to detailsView and created gif for coming soon on not completed views">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.androidTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Linguini.app.unitTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Single/PojoForMeal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Single/PojoForMeal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepoIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepoIMP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/FavoritesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/FavoritesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealOfDayAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealOfDayAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_daily_meal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_daily_meal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" afterDir="false" />
-    </list>
+    <list default="true" id="50eb6732-c284-4d97-a9f9-4aa4e91a3e2b" name="Changes" comment="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -430,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708087333552</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment.">
+      <option name="closed" value="true" />
+      <created>1708132009166</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708132009166</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -448,6 +439,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="merging" />
     <MESSAGE value="adding vido to detailsView and created gif for coming soon on not completed views" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding vido to detailsView and created gif for coming soon on not completed views" />
+    <MESSAGE value="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment." />
   </component>
 </project>
