@@ -4,6 +4,8 @@ import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSource;
 import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSourceIMP;
 import com.example.linguini.HomeScreen.model.network.NetworkCallBack;
 
+import io.reactivex.rxjava3.core.Completable;
+
 public class MealsRepoIMP implements MealsRepository{
 
     private static MealsRepoIMP instance = null;
@@ -41,5 +43,10 @@ public class MealsRepoIMP implements MealsRepository{
     @Override
     public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id) {
         remoteDataSource.getMealDetails(mealCallBackDetails, id);
+    }
+
+    @Override
+    public Completable addToFavorites(String mealId) {
+        return null;
     }
 }
