@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMeal;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
+import com.example.linguini.HomeScreen.model.dataBase.MealDataBase;
 import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSourceIMP;
 import com.example.linguini.HomeScreen.model.repo.MealsRepoIMP;
 import com.example.linguini.HomeScreen.presenter.DetailsPresenterIMP;
@@ -25,16 +28,20 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DetailsFragment extends Fragment implements DetailsView {
     private String mealId;
     private DetailsPresenterIMP detailsPresenterIMP;
     String videoId;
-
     ImageView imgGif;
-
-    Button btnPlay;
+    ImageButton btnFav;
+    PojoForMeal pojoForMeal;
     private static final String TAG = "DetailsFragment";
 
     @Override
@@ -47,7 +54,6 @@ public class DetailsFragment extends Fragment implements DetailsView {
         mealId = DetailsFragmentArgs.fromBundle(getArguments()).getSelectedMeal();
         //Log.i(TAG, "onCreate: " + mealId);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,13 +61,70 @@ public class DetailsFragment extends Fragment implements DetailsView {
         detailsPresenterIMP.getMealDetails(mealId);
         return view;
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        btnFav = view.findViewById(R.id.btnFav);
 
-        // Any additional initialization code can go here
+        // DB
+        MealDataBase mealDataBase = MealDataBase.getInstance(getContext());
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mealDataBase == null) {
+                    Log.e(TAG, "Database instance is null");
+                    return;
+                }
+
+                if (pojoForMeal == null) {
+                    Log.e(TAG, "pojoForMeal is null");
+                    return;
+                }
+
+                List<String> dataList = new ArrayList<>();
+                dataList.add("data1");
+                dataList.add("data2");
+                dataList.add("data3");
+
+                // Create a new PojoForMeal object based on the existing pojoForMeal
+                PojoForMeal newPojoForMeal = new PojoForMeal(
+                        pojoForMeal.getIdMeal(), // Assuming getId() returns the ID of the meal
+                        pojoForMeal.getMealName(),
+                        pojoForMeal.getStrCategory(),
+                        pojoForMeal.getAreaOfMeal(),
+                        pojoForMeal.getStrInstructions(),
+                        pojoForMeal.getImageUrl(),
+                        pojoForMeal.getStrYoutube(),
+                        dataList,  // Add your data list here
+                        dataList   // You can add another list if needed
+                );
+
+                mealDataBase.mealDAO().insertMeal(newPojoForMeal)
+                        .subscribeOn(Schedulers.computation())
+                        .subscribe(new CompletableObserver() {
+                            @Override
+                            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                // Ensure UI operation runs on the main thread
+                                requireActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getContext(), "onComplete", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                Log.e(TAG, "Error inserting meal into database", e);
+                            }
+                        });
+            }
+        });
     }
 
     @Override
@@ -69,10 +132,10 @@ public class DetailsFragment extends Fragment implements DetailsView {
         //Log.i(TAG, "show Meal: " + mealResponse.getMealDay().get(0).getMealName());
 
         // Retrieve meal details from the response
-        PojoForMeal pojoForMeal = mealResponse.getMealDay().get(0);
+        pojoForMeal = mealResponse.getMealDay().get(0);
 
         // Log the image URL
-        //Log.i(TAG, "Image URL: " + pojoForMeal.getImageUrl());
+        Log.i(TAG, "ingredients: " + pojoForMeal.getIngredients());
 
         // Populate UI elements with meal data
         TextView mealNameTextView = getView().findViewById(R.id.meal_name);

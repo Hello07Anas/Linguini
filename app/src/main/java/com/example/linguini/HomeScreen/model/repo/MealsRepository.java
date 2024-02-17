@@ -1,15 +1,20 @@
 package com.example.linguini.HomeScreen.model.repo;
 
-import com.example.linguini.HomeScreen.model.network.MealsRemoteDataSource;
 import com.example.linguini.HomeScreen.model.network.NetworkCallBack;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Completable;
 
 public interface MealsRepository {
 
-    public void getIngediants(NetworkCallBack.IngredientsCallBack ingredientsCallBack);
+    void getIngediants(NetworkCallBack.IngredientsCallBack ingredientsCallBack);
 
-    public void getArea(NetworkCallBack.AreaCallBack areaCallBack);
+    void getArea(NetworkCallBack.AreaCallBack areaCallBack);
 
-    public void getMeal(NetworkCallBack.MealCallBack mealCallBack);
+    void getMeal(NetworkCallBack.MealCallBack mealCallBack);
 
-    public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id);
+    void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id);
+
+    Completable addToFavorites(String mealId);
+
 }

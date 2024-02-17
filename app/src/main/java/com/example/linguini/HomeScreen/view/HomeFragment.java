@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
@@ -37,19 +38,22 @@ public class HomeFragment extends Fragment implements HomeView {
     FirebaseAuth auth;
     FirebaseUser user;
     HomePresenter homePresenter;
-    MealAreaAdapter mealAreaAdapter;
     private RecyclerView recyclerView;
     private MealOfDayAdapter mealAdapter;
+    ImageButton btnDeletes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         recyclerView = view.findViewById(R.id.recycler_view_card);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
@@ -61,9 +65,6 @@ public class HomeFragment extends Fragment implements HomeView {
 
         return view;
     }//MealOfDayAdapter
-
-
-
 
     public void onItemCliked(PojoForMeal meal) {
 
@@ -110,30 +111,24 @@ public class HomeFragment extends Fragment implements HomeView {
 
     }
 
-
-
-
-
-
     @Override
     public void showMealErrorMSG(String error) {
         Log.i(TAG, "showArea: " + error);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
 
+        //        btnDeletes = view.findViewById(R.id.btnDeletes);
+        //        btnDeletes.setVisibility(View.GONE);
+
         homePresenter.getIngrediants();
         homePresenter.getArea();
         homePresenter.getMeal();
         //homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
     }
-
-
-
 
     public void onClicked(PojoForMeal pojoForMeal, View view) {
         Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(pojoForMeal.getIdMeal()));

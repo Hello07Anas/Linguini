@@ -4,24 +4,39 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+@Entity(tableName = "meals_db")
 public class PojoForMeal {
+    @PrimaryKey
+    @NonNull
     private String idMeal;
     @SerializedName("strMeal")
     private String mealName;
+    @Ignore
     private String strCategory;
     @SerializedName("strArea")
     private String areaOfMeal;
+    @Ignore
     private String strInstructions;
     @SerializedName("strMealThumb")
     private String imageUrl;
+    @Ignore
     private String strYoutube;
+    @Ignore
     private List<String> ingredients;
+    @Ignore
     private List<String> measures;
 
+
+    public PojoForMeal() {
+        // Default constructor
+    }
     public PojoForMeal(String idMeal, String strMeal, String strCategory, String strArea,
                        String strInstructions, String strMealThumb, String strYoutube,
                        List<String> ingredients, List<String> measures) {
