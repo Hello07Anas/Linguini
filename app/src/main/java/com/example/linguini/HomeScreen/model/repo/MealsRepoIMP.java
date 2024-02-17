@@ -46,6 +46,11 @@ public class MealsRepoIMP implements MealsRepository{
     }
 
     @Override
+    public void getCategorys(NetworkCallBack.CategoriesCallBack categoriesCallBack) {
+        remoteDataSource.getMealCategories(categoriesCallBack);
+    }
+
+    @Override
     public Completable addToFavorites(String mealId) {
         return null;
     }

@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 
 import com.example.linguini.HomeScreen.model.Pojos.Response.IngredientsResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
+import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMeal;
 import com.example.linguini.HomeScreen.model.dataBase.MealDataBase;
@@ -139,6 +140,16 @@ public class FavoritesFragment extends Fragment implements HomeView {
 
     @Override
     public void showMealErrorMSG(String error) {}
+
+    @Override
+    public void showCategories(MealCategoryResponse mealCategoryResponse) {
+
+    }
+
+    @Override
+    public void showCategoriesErrorMSG(String error) {
+
+    }
 
     @Override
     public void onClicked(PojoForMeal meal, View view) {}

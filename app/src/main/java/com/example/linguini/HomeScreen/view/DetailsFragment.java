@@ -146,7 +146,6 @@ public class DetailsFragment extends Fragment implements DetailsView {
         mealNameTextView.setText(pojoForMeal.getMealName());
         mealCountryTextView.setText(pojoForMeal.getAreaOfMeal());
 
-
         Glide.with(getContext()).load(pojoForMeal.getImageUrl())
                 .placeholder(R.drawable.logo2)
                 .error(R.drawable.palastine)
@@ -241,6 +240,3 @@ public class DetailsFragment extends Fragment implements DetailsView {
         return videoId;
     }
 }
-
-
-

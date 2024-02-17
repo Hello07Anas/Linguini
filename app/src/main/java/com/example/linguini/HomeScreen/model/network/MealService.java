@@ -17,7 +17,7 @@ public interface MealService {
     @GET("list.php?a=list")
     Call<MealAreaResponse> getMealAreas();
 
-    @GET("list.php?c=list")
+    @GET("categories.php")
     Call<MealCategoryResponse> getMealCategories();
 
     @GET("random.php")

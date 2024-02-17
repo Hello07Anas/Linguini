@@ -2,6 +2,7 @@ package com.example.linguini.HomeScreen.model.network;
 
 import com.example.linguini.HomeScreen.model.Pojos.Response.IngredientsResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
+import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForIngredients;
 
@@ -25,5 +26,11 @@ public interface NetworkCallBack {
     interface MealCallBackDetails {
         public void onSuccessMeal(MealResponse mealResponse);
         public void onFailMeal(String error);
+    }
+
+    interface CategoriesCallBack{
+        public void onSuccessCategories(MealCategoryResponse mealCategoryResponse);
+        public void onFailCategories(String error);
+
     }
 }
