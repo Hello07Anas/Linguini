@@ -14,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.linguini.R;
 import com.example.linguini.Registration.LoginFragment;
 import com.example.linguini.Registration.RegistrationActivity;
@@ -26,6 +28,8 @@ public class ProfileFragment extends Fragment {
     Button btnLogOut;
     SharedPreferences preferences;
     LoginFragment loginFragment;
+
+    ImageView gifOfProfile;
 
 
     @Override
@@ -46,6 +50,14 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnLogOut = view.findViewById(R.id.btnLogOut);
+
+        gifOfProfile = requireView().findViewById(R.id.gifOfProfile);
+        Glide.with(requireContext())
+                .asGif() // Specify that the resource is a GIF
+                .load(R.drawable.pane_animation) // Load the GIF from resources
+                .placeholder(R.drawable.palastine) // Placeholder image while loading
+                .error(R.drawable.palastine) // Error image if loading fails
+                .into(gifOfProfile); // Set the GIF to the ImageView
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override

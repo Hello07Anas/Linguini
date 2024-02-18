@@ -17,6 +17,9 @@ public interface MealsRepository {
 
     void getCategorys(NetworkCallBack.CategoriesCallBack categoriesCallBack);
 
+    //TODO <<><><><><>
+    void getSearchByName(String query, NetworkCallBack.MealCallBackSearch mealCallBackSearch);
+
     Completable addToFavorites(String mealId);
 
 }

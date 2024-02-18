@@ -10,4 +10,7 @@ public interface MealsRemoteDataSource {
     public void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id);
 
     public void getMealCategories(NetworkCallBack.CategoriesCallBack categoriesCallBack);
+
+    // TODO Search here <><><>
+    public void getMealSearch(String query, NetworkCallBack.MealCallBackSearch mealCallBackSearch);
 }

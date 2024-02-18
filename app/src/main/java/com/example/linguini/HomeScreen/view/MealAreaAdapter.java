@@ -39,11 +39,11 @@ public class MealAreaAdapter extends RecyclerView.Adapter<MealAreaAdapter.ViewHo
         // Set country name (emoji flag) in TextView
         holder.country_name.setText(getFlagEmoji(mealArea.getStrArea()) + " " + mealArea.getStrArea());
 
-//        // Set emoji flag in ImageView
-//        Drawable emojiDrawable = getDrawableFromEmoji(getFlagEmoji(mealArea.getStrArea()), holder.itemView);
-//        if (emojiDrawable != null) {
-//            holder.country_img.setImageDrawable(emojiDrawable);
-//        }
+        // Set emoji flag in ImageView
+        Drawable emojiDrawable = getDrawableFromEmoji(getFlagEmoji(mealArea.getStrArea()), holder.itemView);
+        if (emojiDrawable != null) {
+            holder.country_img.setImageDrawable(emojiDrawable);
+        }
     }
 
 
