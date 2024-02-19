@@ -14,7 +14,6 @@ public abstract class MealDataBase extends RoomDatabase {
     private static MealDataBase instance; // static <> to implement SingleTone pattern
     public abstract MealDAO mealDAO();
 
-    // to avoid more than thread access DB and avoid type on the same row
     public static synchronized MealDataBase getInstance(Context context){
         //singleTone pattern
         if (instance == null) {

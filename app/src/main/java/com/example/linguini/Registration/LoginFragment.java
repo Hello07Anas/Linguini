@@ -44,10 +44,8 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
-        // Initialize your UI components here using rootView.findViewById()
         editTextEmailAddress = rootView.findViewById(R.id.editTextEmailAddress);
         editTextPassword = rootView.findViewById(R.id.editTextPassword);
         btnLogin = rootView.findViewById(R.id.btnLogin);
@@ -63,28 +61,25 @@ public class LoginFragment extends Fragment {
             startActivity(intent);
         }
 
-        // Set click listener for the sign-up TextView
-        // Set click listener for the sign-up TextView
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), HomeActivity.class);
-                startActivity(intent);
-                // TODO un comment the code its very important I just comment to can move faster to Home
                 progressBar.setVisibility(View.VISIBLE);
                 String email = editTextEmailAddress.getText().toString();
                 String password = editTextPassword.getText().toString();
 
+//                Intent intent = new Intent(getContext(), HomeActivity.class);
+//                startActivity(intent);
+
                 if (TextUtils.isEmpty(email)) {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "enter email", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "pleas enter email ⚠\uFE0F", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "enter password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "pleas enter password ⚠\uFE0F", Toast.LENGTH_LONG).show();
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
@@ -94,14 +89,14 @@ public class LoginFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(getContext(), "welcome to Linguini", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "welcome to Linguini \uD83D\uDE0A", Toast.LENGTH_LONG).show();
                                     changeState();
 
                                     Intent intent = new Intent(getContext(), HomeActivity.class);
                                     startActivity(intent);
                                 } else {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(getContext(), "the password or email incorrect :(", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "sorry! password or email incorrect \uD83D\uDE1E", Toast.LENGTH_LONG).show();
 
                                 }
                             }
@@ -118,7 +113,7 @@ public class LoginFragment extends Fragment {
                 SignUpFragment signUpFragment = new SignUpFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, signUpFragment);
-                transaction.addToBackStack(null);  // Optional: Add to back stack for back navigation
+                transaction.addToBackStack(null);  // TODO Optional: Add to back stack for back navigation
                 transaction.commit();
             }
         });

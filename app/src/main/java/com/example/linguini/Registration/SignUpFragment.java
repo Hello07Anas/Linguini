@@ -62,13 +62,13 @@ public class SignUpFragment extends Fragment {
                 String password = edittxtPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getContext(), "Enter email", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Enter email ⚠\uFE0F", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getContext(), "Enter password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Enter password ⚠\uFE0F", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                     return;
                 }
@@ -79,12 +79,10 @@ public class SignUpFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     progressBar.setVisibility(View.GONE);
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(getContext(), "Account created successfully", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "Account created successfully \uD83C\uDF89", Toast.LENGTH_LONG).show();
                                 } else {
                                     progressBar.setVisibility(View.GONE);
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "\uD83D\uDE1EAuthentication failed.⚠\uFE0F", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -95,12 +93,10 @@ public class SignUpFragment extends Fragment {
         txtLoginScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO <<< important >>>
-                // Navigate to the SignUpFragment
                 LoginFragment loginFragment = new LoginFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, loginFragment);
-                transaction.addToBackStack(null);  // Optional: Add to back stack for back navigation
+                transaction.addToBackStack(null);  // TODO Optional: Add to back stack for back navigation
                 transaction.commit();
             }
         });

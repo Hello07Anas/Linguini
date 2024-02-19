@@ -30,7 +30,6 @@ public class MyPlanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_plan, container, false);
     }
 
@@ -41,10 +40,10 @@ public class MyPlanFragment extends Fragment {
 
         imgCommingSoon1 = requireView().findViewById(R.id.imgCommingSoon1);
         Glide.with(requireContext())
-                .asGif() // Specify that the resource is a GIF
-                .load(R.drawable.comming_soon) // Load the GIF from resources
-                .placeholder(R.drawable.palastine) // Placeholder image while loading
-                .error(R.drawable.palastine) // Error image if loading fails
-                .into(imgCommingSoon1); // Set the GIF to the ImageView
+                .asGif()
+                .load(R.drawable.comming_soon)
+                .placeholder(R.drawable.palastine)
+                .error(R.drawable.palastine)
+                .into(imgCommingSoon1);
     }
 }

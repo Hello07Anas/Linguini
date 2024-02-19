@@ -8,6 +8,12 @@ import com.example.linguini.HomeScreen.model.Pojos.Response.MealAreaResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
+    private static final String TAG = "MealsRemoteDataSourceIMP";
     private MealService service;
     private static MealsRemoteDataSourceIMP instance;
 
@@ -23,21 +30,18 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
         service = retrofit.create(MealService.class);
     }
 
-    // singeltone desgin pattern <<
+    // Singleton design pattern
     public static synchronized MealsRemoteDataSourceIMP getInstance(Context context) {
         if (instance == null) {
             instance = new MealsRemoteDataSourceIMP(context);
         }
         return instance;
     }
-
-
-
-
 
     @Override
     public void getIngredients(NetworkCallBack.IngredientsCallBack ingredientsCallBack) {
@@ -121,5 +125,38 @@ public class MealsRemoteDataSourceIMP implements MealsRemoteDataSource {
                 categoriesCallBack.onFailCategories(t.getMessage());
             }
         });
+    }
+
+
+    @Override
+    public void getMealSearch(String query, NetworkCallBack.MealCallBackSearch mealCallBackSearch) {
+        Single<MealResponse> mealsByCategoryCall = service.searchByName(query);
+
+        mealsByCategoryCall.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    mealCallBackSearch.onSuccessSearch(response);
+                    Log.i(TAG, "getMealSearch: " + response.getMealDay().get(0).getMealName() + "LOL");
+                }, error ->
+                        mealCallBackSearch.onFailSearch("Network request failed. " +
+                                "Error: " + error.getMessage()));
+//        service.searchByName(query)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleObserver<MealResponse>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(MealResponse mealResponse) {
+//                        mealCallBackSearch.onSuccessSearch(mealResponse);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        mealCallBackSearch.onFailSearch(e.getMessage());
+//                    }
+//                });
     }
 }

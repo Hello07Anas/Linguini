@@ -7,9 +7,7 @@ import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMeal;
 
 public interface DetailsView {
-
     public void showDetailse(MealResponse mealResponse);
     public void showDetailseErrorMSG(String error);
-
     public void onClicked(PojoForMeal pojoForMeal, View view);
 }

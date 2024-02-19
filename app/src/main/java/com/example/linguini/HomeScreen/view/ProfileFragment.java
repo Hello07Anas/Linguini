@@ -14,7 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.linguini.R;
 import com.example.linguini.Registration.LoginFragment;
 import com.example.linguini.Registration.RegistrationActivity;
@@ -26,7 +29,7 @@ public class ProfileFragment extends Fragment {
     Button btnLogOut;
     SharedPreferences preferences;
     LoginFragment loginFragment;
-
+    ImageView gifOfProfile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,26 +37,30 @@ public class ProfileFragment extends Fragment {
         preferences = getActivity().getSharedPreferences("AuthState", Context.MODE_PRIVATE);
         loginFragment = new LoginFragment();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnLogOut = view.findViewById(R.id.btnLogOut);
+        gifOfProfile = requireView().findViewById(R.id.gifOfProfile);
+        Glide.with(requireContext())
+                .asGif()
+                .load(R.drawable.pane_animation)
+                .placeholder(R.drawable.palastine)
+                .error(R.drawable.palastine)
+                .into(gifOfProfile);
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //clearAuthState();
+                Toast.makeText(getContext(), "We will miss you \uD83D\uDE22 \uD83D\uDC94", Toast.LENGTH_SHORT).show();
+                clearAuthState();
                 Intent intent = new Intent(getContext(), RegistrationActivity.class);
                 startActivity(intent);
-                //navigateToFragment(loginFragment);
             }
         });
     }
@@ -61,7 +68,7 @@ public class ProfileFragment extends Fragment {
     private void navigateToFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);  // Optional: Add to back stack for back navigation
+        transaction.addToBackStack(null);  // TODO Optional: Add to back stack for back navigation
         transaction.commit();
     }
 

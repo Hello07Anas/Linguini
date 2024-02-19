@@ -36,11 +36,9 @@ public class HomePresenterIMP implements HomePresenter, NetworkCallBack.Ingredie
 
     @Override
     public void showArea(List<PojoForMealArea> areas) {
-        // Create a new instance of MealAreaResponse and populate it with the provided list
         MealAreaResponse mealAreaResponse = new MealAreaResponse();
         mealAreaResponse.setMealAreas(areas);
 
-        // Pass the created MealAreaResponse object to the view
         homeView.showArea(mealAreaResponse);
     }
 

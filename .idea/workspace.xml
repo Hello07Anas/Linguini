@@ -85,6 +85,11 @@
           <theme>@style/Theme.Linguini</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/card_daily_meal_without_btn.xml">
+        <config>
+          <theme>@style/Theme.Linguini</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/card_ingredients.xml">
         <config>
           <theme>@style/Theme.Linguini</theme>
@@ -135,11 +140,6 @@
           <theme>@style/Theme.Linguini</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/search_background.xml">
-        <config>
-          <theme>@style/Theme.Linguini</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/test.xml">
         <config>
           <theme>@style/Theme.Linguini</theme>
@@ -161,34 +161,41 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50eb6732-c284-4d97-a9f9-4aa4e91a3e2b" name="Changes" comment="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealCategoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/search_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-ar/langs.xml" afterDir="false" />
+    <list default="true" id="50eb6732-c284-4d97-a9f9-4aa4e91a3e2b" name="Changes" comment="last changes at 19\2\2024 there is alot to do :(">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Response/MealCategoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Response/MealCategoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Single/PojoForMealCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/Pojos/Single/PojoForMealCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/dataBase/MealDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealsRemoteDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealsRemoteDataSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealsRemoteDataSourceIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/MealsRemoteDataSourceIMP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/NetworkCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/network/NetworkCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepoIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepoIMP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/model/repo/MealsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/DetailsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/DetailsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/DetailsPresenterIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/DetailsPresenterIMP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/HomePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/HomePresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/HomePresenterIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/HomePresenterIMP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/SearchPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/SearchPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/SearchPresenterIMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/presenter/SearchPresenterIMP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/DetailsView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/FavoritesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/FavoritesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/HomeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealAreaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealAreaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealCategoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealCategoryAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealOfDayAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MealOfDayAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MyPlanFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/MyPlanFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/ProfileFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/HomeScreen/view/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_area.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_area.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/LoginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/RegisterationFregment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/RegisterationFregment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/RegistrationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/RegistrationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/SignUpFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/Registration/SignUpFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/SplashScreen/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/linguini/SplashScreen/SplashActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,12 +266,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="navigationResourceFile" />
-        <option value="Interface" />
-        <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="navigationResourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -285,36 +292,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DEBUGGABLE_DEVICE": "emulator-5554",
-    "DEBUGGABLE_PROCESS": "com.example.linguini",
-    "DEBUGGER_ID": "Auto",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHOW_ALL_PROCESSES": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "home__screen__desgin",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_directory_selection": "D:/Linguini/app/src/main/res/layout",
-    "last_opened_file_path": "D:/MVPtest",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "experimental"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DEBUGGABLE_DEVICE&quot;: &quot;emulator-5554&quot;,
+    &quot;DEBUGGABLE_PROCESS&quot;: &quot;com.example.linguini&quot;,
+    &quot;DEBUGGER_ID&quot;: &quot;Auto&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHOW_ALL_PROCESSES&quot;: &quot;false&quot;,
+    &quot;android-custom-viewC:/Users/anasn/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.2/7bc0f04ccbe0159dc303408af769dc1bbb80d584/recyclerview-1.3.2-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;home__screen__desgin&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/Linguini/app/src/main/res/layout&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Linguini&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;experimental&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Properties"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Properties&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Linguini\app\src\main\res\layout" />
+    </key>
     <key name="android.template.-1773040035">
       <recent name="com.example.linguini.Registration" />
     </key>
@@ -454,13 +465,13 @@
       <option name="project" value="LOCAL" />
       <updated>1708132009166</updated>
     </task>
-    <task id="LOCAL-00004" summary="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment.">
+    <task id="LOCAL-00004" summary="last changes at 19\2\2024 there is alot to do :(">
       <option name="closed" value="true" />
-      <created>1708132146752</created>
+      <created>1708293771489</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1708132146752</updated>
+      <updated>1708293771489</updated>
     </task>
     <option name="localTasksCounter" value="5" />
     <servers />
@@ -481,6 +492,7 @@
     <MESSAGE value="merging" />
     <MESSAGE value="adding vido to detailsView and created gif for coming soon on not completed views" />
     <MESSAGE value="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created DB using Room using javaRX and add func to btn add to vav and added btn delete from vav fragment." />
+    <MESSAGE value="last changes at 19\2\2024 there is alot to do :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="last changes at 19\2\2024 there is alot to do :(" />
   </component>
 </project>

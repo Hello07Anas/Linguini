@@ -15,7 +15,7 @@ import com.example.linguini.MainActivity;
 import com.example.linguini.R;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 4000;
 
     private static final String PREF_NAME = "AuthState";
     private static final String IS_LOGGED_IN = "IsLoggedIn";
@@ -35,8 +35,6 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-
                 if (isLoggedIn) {
                     Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -46,16 +44,6 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-
-
-
-                //Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                // TODO Bougs here "not all time will go to MainActivity"
-                // check if the user logged in go To Home Screen if not go to Login Screen
-                // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                //startActivity(i);
-                //finish();
             }
         }, SPLASH_TIME_OUT);
     }

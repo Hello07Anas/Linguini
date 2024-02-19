@@ -41,8 +41,8 @@ public class MealCategoryAdapter extends RecyclerView.Adapter<MealCategoryAdapte
 
             // Load category image using Glide
             Glide.with(holder.itemView)
-                    .load(mealCategory.getStrCategoryThumb()) // Replace imageUrl with the actual URL of the image
-                    .placeholder(R.drawable.palastine) // Placeholder image while loading
+                    .load(mealCategory.getStrCategoryThumb())
+                    .placeholder(R.drawable.palastine)
                     .into(holder.categoryImage);
         }
     }
@@ -66,7 +66,7 @@ public class MealCategoryAdapter extends RecyclerView.Adapter<MealCategoryAdapte
 
     public void updateData(List<PojoForMealCategory> newData) {
         if (newData != null) {
-            Log.d(TAG, "Updating meal category adapter with new data, size: " + newData.size()); // Log the size of new data
+            Log.d(TAG, "Updating meal category adapter with new data, size: " + newData.size());
             // Initialize the dataset if it's null
             if (mealCategories == null) {
                 mealCategories = new ArrayList<>();
@@ -75,7 +75,7 @@ public class MealCategoryAdapter extends RecyclerView.Adapter<MealCategoryAdapte
             mealCategories.clear();
             mealCategories.addAll(newData);
             notifyDataSetChanged();
-            Log.d(TAG, "Dataset updated and notifyDataSetChanged() called"); // Log when dataset is updated and notifyDataSetChanged() is called
+            Log.d(TAG, "Dataset updated and notifyDataSetChanged() called");
         }
     }
 
