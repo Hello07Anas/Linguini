@@ -9,12 +9,15 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealCategoryResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Response.MealResponse;
 import com.example.linguini.HomeScreen.model.Pojos.Single.PojoForMeal;
@@ -42,9 +45,8 @@ public class HomeFragment extends Fragment implements HomeView {
     private RecyclerView recyclerView;
     private MealOfDayAdapter mealAdapter;
     private MealCategoryAdapter mealCategoryAdapter;
-
     private MealAreaAdapter mealAreaAdapter;
-    ImageButton btnDeletes;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +58,12 @@ public class HomeFragment extends Fragment implements HomeView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-
         user = auth.getCurrentUser();
         String email = user.getEmail();
         Log.i(TAG, "onCreateView: "+ email);
 
         return view;
-    }//MealOfDayAdapter
-
-    public void onItemCliked(PojoForMeal meal) {
-
     }
-
 
     @Override
     public void showIngrediants(IngredientsResponse ingredientsResponse) {
@@ -84,10 +79,8 @@ public class HomeFragment extends Fragment implements HomeView {
     public void showArea(MealAreaResponse mealAreaResponse) {
         Log.i(TAG, "showArea: " + mealAreaResponse.getMealAreas());
 
-        // Ensure correct data extraction (adjust based on your response structure)
         List<PojoForMealArea> mealAreas = mealAreaResponse.getMealAreas();
 
-        // Update adapter's dataset and trigger UI refresh
         mealAreaAdapter.updateData(mealAreas);
         mealAreaAdapter.notifyDataSetChanged();
     }
@@ -95,19 +88,14 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void showAreaErrorMSG(String error) {
         Log.i(TAG, "showArea: " + error);
-
     }
 
     @Override
     public void showMeal(MealResponse mealResponse) {
-        //TODO  <<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         Log.i(TAG, "show Meal: " + mealResponse.getMealDay().get(0).getMealName());
-
-
 
         List<PojoForMeal> meals = mealResponse.getMealDay();
         mealAdapter.updateData(meals);
-
     }
 
     @Override
@@ -118,56 +106,87 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void showCategories(MealCategoryResponse mealCategoryResponse) {
         List<PojoForMealCategory> mealCategories = mealCategoryResponse.getMealCategories();
-        if (mealCategories != null) { // Add null check
+        if (mealCategories != null) {
             mealCategoryAdapter.updateData(mealCategories);
         } else {
             Log.e(TAG, "Meal categories list is null");
         }
     }
-
-
-
-
     @Override
     public void showCategoriesErrorMSG(String error) {
-
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
 
-        //        btnDeletes = view.findViewById(R.id.btnDeletes);
-        //        btnDeletes.setVisibility(View.GONE);   //TODO important to make it work for UI
-        recyclerView = view.findViewById(R.id.recyclerView1);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mealAreaAdapter = new MealAreaAdapter(new ArrayList<>());
-        recyclerView.setAdapter(mealAreaAdapter);
+        ImageView gifImageView = view.findViewById(R.id.gif_image_view);
+        gifImageView.setVisibility(View.VISIBLE);
 
+        Glide.with(this).asGif().load(R.drawable.chif_animation).into(gifImageView);
 
-        RecyclerView recyclerView1 = view.findViewById(R.id.recycler_view_card);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
-        mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
-        recyclerView1.setAdapter(mealAdapter);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gifImageView.setVisibility(View.GONE);
 
+                homePresenter = new HomePresenterIMP(HomeFragment.this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
 
-        RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerView2);
-        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
-        mealCategoryAdapter = new MealCategoryAdapter(new ArrayList<>());
-        recyclerViewCategory.setAdapter(mealCategoryAdapter);
+                recyclerView = view.findViewById(R.id.recyclerView1);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                mealAreaAdapter = new MealAreaAdapter(new ArrayList<>());
+                recyclerView.setAdapter(mealAreaAdapter);
 
-        //Log.i(TAG, "Fetching ingredients data...");
-        homePresenter.getIngrediants();
+                RecyclerView recyclerView1 = view.findViewById(R.id.recycler_view_card);
+                recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+                mealAdapter = new MealOfDayAdapter(new ArrayList<>(), HomeFragment.this);
+                recyclerView1.setAdapter(mealAdapter);
 
-        //Log.i(TAG, "Fetching meal areas data...");
-        homePresenter.getArea();
+                RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerView2);
+                recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
+                mealCategoryAdapter = new MealCategoryAdapter(new ArrayList<>());
+                recyclerViewCategory.setAdapter(mealCategoryAdapter);
 
-        //Log.i(TAG, "Fetching meal data...");
-        homePresenter.getMeal();
-        //Log.i(TAG, "Fetching Category data...");
-        homePresenter.getCategory();
+                homePresenter.getIngrediants();
+                homePresenter.getArea();
+                homePresenter.getMeal();
+                homePresenter.getCategory();
+            }
+        }, 3000);
     }
+
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        homePresenter = new HomePresenterIMP(this, MealsRepoIMP.getInstance(MealsRemoteDataSourceIMP.getInstance(getActivity())));
+//
+//        //        btnDeletes = view.findViewById(R.id.btnDeletes);
+//        //        btnDeletes.setVisibility(View.GONE);   //TODO important to make it work for UI
+//        recyclerView = view.findViewById(R.id.recyclerView1);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        mealAreaAdapter = new MealAreaAdapter(new ArrayList<>());
+//        recyclerView.setAdapter(mealAreaAdapter);
+//
+//
+//        RecyclerView recyclerView1 = view.findViewById(R.id.recycler_view_card);
+//        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mealAdapter = new MealOfDayAdapter(new ArrayList<>(), this);
+//        recyclerView1.setAdapter(mealAdapter);
+//
+//
+//        RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerView2);
+//        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
+//        mealCategoryAdapter = new MealCategoryAdapter(new ArrayList<>());
+//        recyclerViewCategory.setAdapter(mealCategoryAdapter);
+//        //Log.i(TAG, "Fetching ingredients data...");
+//        homePresenter.getIngrediants();
+//        //Log.i(TAG, "Fetching meal areas data...");
+//        homePresenter.getArea();
+//        //Log.i(TAG, "Fetching meal data...");
+//        homePresenter.getMeal();
+//        //Log.i(TAG, "Fetching Category data...");
+//        homePresenter.getCategory();
+//    }
 
     public void onClicked(PojoForMeal pojoForMeal, View view) {
         Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(pojoForMeal.getIdMeal()));

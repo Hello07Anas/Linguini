@@ -13,8 +13,6 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 
-
-
 @Dao
 public interface MealDAO {
     @Insert

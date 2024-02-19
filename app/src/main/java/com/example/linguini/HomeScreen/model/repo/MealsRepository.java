@@ -6,20 +6,12 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Completable;
 
 public interface MealsRepository {
-
     void getIngediants(NetworkCallBack.IngredientsCallBack ingredientsCallBack);
-
     void getArea(NetworkCallBack.AreaCallBack areaCallBack);
-
     void getMeal(NetworkCallBack.MealCallBack mealCallBack);
-
     void getMealDetails(NetworkCallBack.MealCallBackDetails mealCallBackDetails, String id);
-
     void getCategorys(NetworkCallBack.CategoriesCallBack categoriesCallBack);
-
-    //TODO <<><><><><>
     void getSearchByName(String query, NetworkCallBack.MealCallBackSearch mealCallBackSearch);
 
     Completable addToFavorites(String mealId);
-
 }

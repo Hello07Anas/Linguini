@@ -28,12 +28,11 @@ public interface NetworkCallBack {
         public void onFailMeal(String error);
     }
 
-    //TODO <><><><><> search here
     interface MealCallBackSearch {
         public void onSuccessSearch(MealResponse mealResponse);
         public void onFailSearch(String error);
     }
-    //TODO <><><><><>
+
     interface CategoriesCallBack{
         public void onSuccessCategories(MealCategoryResponse mealCategoryResponse);
         public void onFailCategories(String error);

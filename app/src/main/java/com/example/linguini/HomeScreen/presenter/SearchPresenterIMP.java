@@ -22,7 +22,6 @@ public class SearchPresenterIMP implements SearchPresenter, NetworkCallBack.Meal
     private SearchView view;
     private MealsRepository repository;
     private final PublishSubject<String> querySubject = PublishSubject.create();
-
     public SearchPresenterIMP(MealsRepository repository, SearchView view) {
         this.repository = repository;
         this.view = view;
@@ -63,7 +62,6 @@ public class SearchPresenterIMP implements SearchPresenter, NetworkCallBack.Meal
         getSearchMeals(query);
     }
 
-    // Assume this method is called whenever the user types or removes a character
     public void onSearchQueryChanged(String query) {
         Observable.just(query)
                 .debounce(300, TimeUnit.MILLISECONDS)
@@ -72,7 +70,6 @@ public class SearchPresenterIMP implements SearchPresenter, NetworkCallBack.Meal
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.i(TAG, "onSubscribe: " + d + "here");
-                        // Disposable is not used in this example
                     }
 
                     @Override
@@ -82,12 +79,11 @@ public class SearchPresenterIMP implements SearchPresenter, NetworkCallBack.Meal
 
                     @Override
                     public void onError(Throwable e) {
-                        // Handle error if any
+                        // TODO Handle error if any
                     }
 
                     @Override
                     public void onComplete() {
-                        // Handle completion if needed
                     }
                 });
     }

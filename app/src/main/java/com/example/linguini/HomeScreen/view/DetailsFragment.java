@@ -87,17 +87,16 @@ public class DetailsFragment extends Fragment implements DetailsView {
                 dataList.add("data2");
                 dataList.add("data3");
 
-                // Create a new PojoForMeal object based on the existing pojoForMeal
                 PojoForMeal newPojoForMeal = new PojoForMeal(
-                        pojoForMeal.getIdMeal(), // Assuming getId() returns the ID of the meal
+                        pojoForMeal.getIdMeal(),
                         pojoForMeal.getMealName(),
                         pojoForMeal.getStrCategory(),
                         pojoForMeal.getAreaOfMeal(),
                         pojoForMeal.getStrInstructions(),
                         pojoForMeal.getImageUrl(),
                         pojoForMeal.getStrYoutube(),
-                        dataList,  // Add your data list here
-                        dataList   // You can add another list if needed
+                        dataList,
+                        dataList
                 );
 
                 mealDataBase.mealDAO().insertMeal(newPojoForMeal)
@@ -109,11 +108,10 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
                             @Override
                             public void onComplete() {
-                                // Ensure UI operation runs on the main thread
                                 requireActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(getContext(), "onComplete", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "WonderFull Choice \uD83D\uDC4D", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -130,14 +128,10 @@ public class DetailsFragment extends Fragment implements DetailsView {
     @Override
     public void showDetailse(MealResponse mealResponse) {
         //Log.i(TAG, "show Meal: " + mealResponse.getMealDay().get(0).getMealName());
-
-        // Retrieve meal details from the response
         pojoForMeal = mealResponse.getMealDay().get(0);
 
-        // Log the image URL
         Log.i(TAG, "ingredients: " + pojoForMeal.getIngredients());
 
-        // Populate UI elements with meal data
         TextView mealNameTextView = getView().findViewById(R.id.meal_name);
         TextView mealCountryTextView = getView().findViewById(R.id.meal_country);
         TextView txtInstructions = getView().findViewById(R.id.txtInstructions);
@@ -153,17 +147,15 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
         imgGif = getView().findViewById(R.id.imgGif);
         Glide.with(requireContext())
-                .asGif() // Specify that the resource is a GIF
-                .load(R.drawable.mlaha) // Load the GIF from resources
-                .placeholder(R.drawable.palastine) // Placeholder image while loading
-                .error(R.drawable.palastine) // Error image if loading fails
-                .into(imgGif); // Set the GIF to the ImageView
+                .asGif()
+                .load(R.drawable.mlaha)
+                .placeholder(R.drawable.palastine)
+                .error(R.drawable.palastine)
+                .into(imgGif);
 
-        // Extract video ID from the YouTube URL
         String videoUrl = pojoForMeal.getStrYoutube();
         videoId = extractVideoIdFromUrl(videoUrl);
         Log.i(TAG, "showDetailse: " + videoId);
-        // Initialize YouTubePlayerView and load the video
         YouTubePlayerView youTubePlayerView = getView().findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
@@ -172,7 +164,6 @@ public class DetailsFragment extends Fragment implements DetailsView {
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 youTubePlayer.cueVideo(videoId, 0);
                 Log.i(TAG, "onReady: " + videoId);
-                //youTubePlayer.loadVideo(videoId.substring(32),0);
             }
             @Override
             public void onError(YouTubePlayer youTubePlayer, PlayerConstants.PlayerError error) {
@@ -181,39 +172,25 @@ public class DetailsFragment extends Fragment implements DetailsView {
             }
         });
 
-// Set ingredients
         List<String> ingredients = pojoForMeal.getIngredients();
 
-// Ensure that the ingredients list is not null
         if (ingredients != null) {
-            // Log the number of ingredients
             Log.i(TAG, "Number of Ingredients: " + ingredients.size());
 
-            // Loop through the first 12 ingredients and populate TextViews
             for (int i = 0; i < Math.min(ingredients.size(), 12); i++) {
-                // Find the TextView for the ingredient using its ID
                 int ingredientTextViewId = getResources().getIdentifier("strIngredient" + (i + 1), "id", requireContext().getPackageName());
                 TextView ingredientTextView = getView().findViewById(ingredientTextViewId);
-
-                // Log the ingredient being set
                 Log.d(TAG, "Setting Ingredient " + (i + 1) + ": " + ingredients.get(i));
-
-                // Ensure that the TextView is found
                 if (ingredientTextView != null) {
                     ingredientTextView.setText(ingredients.get(i));
                 } else {
-                    // Log if TextView is not found
                     Log.e(TAG, "Ingredient TextView not found for index: " + (i + 1));
                 }
             }
         } else {
-            // Log if ingredients list is null
             Log.e(TAG, "Ingredients list is null");
         }
     }
-
-
-
 
     @Override
     public void showDetailseErrorMSG(String error) {
@@ -222,7 +199,6 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
     @Override
     public void onClicked(PojoForMeal pojoForMeal, View view) {
-        // Implement your logic here for handling clicks on meal items
     }
 
     private String extractVideoIdFromUrl(String youtubeUrl) {

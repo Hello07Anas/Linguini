@@ -65,11 +65,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         public void bind(PojoForMeal pojoForMeal) {
             mealNameTextView.setText(pojoForMeal.getMealName());
 
-            // Load image using Glide
             Glide.with(itemView.getContext())
                     .load(pojoForMeal.getImageUrl())
-                    .apply(new RequestOptions().centerCrop())  // Apply additional options if needed
+                    .apply(new RequestOptions().centerCrop())
                     .into(meal_image);
         }
+
     }
 }
